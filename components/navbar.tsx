@@ -56,7 +56,7 @@ const Navbar = () => {
             />
           </div>
           <div className="hidden md:flex h-full items-center">
-            <div className="py-3 px-4 bg-[#2f303e] rounded-sm flex focus-within:border-2 border-[#45475a]">
+            <div className="py-3 px-4 bg-[#2f303e] rounded-sm flex">
               <input
                 type="text"
                 name="search"
@@ -111,7 +111,7 @@ const Navbar = () => {
           (isSearchOpen ? "" : " -translate-y-[100%]")
         }
       >
-        <div className="py-3 px-4 bg-[#2f303e] rounded-sm flex focus-within:border-2 border-[#45475a] border-solid justify-between">
+        <div className="py-3 px-4 bg-[#2f303e] rounded-sm flex border-solid justify-between">
           <input
             type="text"
             name="search"
