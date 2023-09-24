@@ -1,8 +1,15 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Titillium_Web } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
+import Navbar from '@/components/navbar';
+
+const font = Titillium_Web({ weight: "400", subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
