@@ -10,12 +10,19 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <div>
-      <div className="bg-[#3b3c4c] text-[#9ca9b9] flex w-full h-[61px] justify-between relative z-20">
-        <div className="bg-[#45475a] text-[#eeeeee] h-full p-[18px] cursor-pointer md:hidden" onClick={() => setIsOpen(!isOpen)}>
+    <div className="mb-5">
+      <div className="bg-[#3b3c4c] text-[#9ca9b9] flex w-full h-[61px] justify-between relative z-20 shadow-md">
+        <div
+          className="bg-[#45475a] text-[#eeeeee] h-full p-[18px] cursor-pointer md:hidden"
+          onClick={() => {
+            setIsSearchOpen(false)
+            setIsMenuOpen(!isMenuOpen);
+        }}
+        >
           <FontAwesomeIcon icon={faBarsStaggered} className="text-[25px]" />
         </div>
         <div className="w-full px-3 text-left flex items-center">
@@ -39,7 +46,10 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex">
-          <div className="bg-[#45475a] text-[#eeeeee] h-full p-[18px] cursor-pointer md:hidden">
+          <div className="bg-[#45475a] text-[#eeeeee] h-full p-[18px] cursor-pointer md:hidden" onClick={() => {
+                setIsMenuOpen(false);
+                setIsSearchOpen(!isSearchOpen);
+            }}>
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
               className="text-[25px] font-bold"
@@ -68,10 +78,50 @@ const Navbar = () => {
       </div>
 
       {/* mobile navigation */}
-      <div className={"w-full p-[10px] flex flex-col gap-2 bg-[#3b3c4c] border-t-4 border-[#3453d1] transition-transform md:hidden z-10 absolute" + (isOpen ? "" : " -translate-y-[100%]")}>
-        <a href="#" className="mx-[10px] px-[15px] py-[8px] bg-[#45475a] text-[#9ca9b9] rounded-md font-semibold text-[16px] tracking-wide hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">Manga List</a>
-        <a href="#" className="mx-[10px] px-[15px] py-[8px] bg-[#45475a] text-[#9ca9b9] rounded-md font-semibold text-[16px] tracking-wide hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">Genre List</a>
-        <a href="#" className="mx-[10px] px-[15px] py-[8px] bg-[#45475a] text-[#9ca9b9] rounded-md font-semibold text-[16px] tracking-wide hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">Bookmark</a>
+      <div
+        className={
+          "w-full p-[10px] flex flex-col gap-2 bg-[#3b3c4c] border-t-4 border-[#3453d1] transition-transform md:hidden z-10 absolute" +
+          (isMenuOpen ? "" : " -translate-y-[100%]")
+        }
+      >
+        <a
+          href="#"
+          className="mx-[10px] px-[15px] py-[8px] bg-[#45475a] text-[#9ca9b9] rounded-md font-semibold text-[16px] tracking-wide hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors"
+        >
+          Manga List
+        </a>
+        <a
+          href="#"
+          className="mx-[10px] px-[15px] py-[8px] bg-[#45475a] text-[#9ca9b9] rounded-md font-semibold text-[16px] tracking-wide hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors"
+        >
+          Genre List
+        </a>
+        <a
+          href="#"
+          className="mx-[10px] px-[15px] py-[8px] bg-[#45475a] text-[#9ca9b9] rounded-md font-semibold text-[16px] tracking-wide hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors"
+        >
+          Bookmark
+        </a>
+      </div>
+
+      {/* mobile search */}
+      <div
+        className={
+          "w-full p-[10px] flex flex-col gap-2 bg-[#3b3c4c] border-t-4 border-[#3453d1] transition-transform md:hidden z-10 absolute" +
+          (isSearchOpen ? "" : " -translate-y-[100%]")
+        }
+      >
+        <div className="py-3 px-4 bg-[#2f303e] rounded-sm flex focus-within:border-2 border-[#45475a] border-solid justify-between">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            className="bg-[#2f303e] outline-none h-4 text-sm font-extralight w-full"
+            placeholder="Search..."
+            autoComplete="off"
+          />
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-sm pl-2" />
+        </div>
       </div>
     </div>
   );
