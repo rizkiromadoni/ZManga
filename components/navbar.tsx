@@ -4,27 +4,30 @@ import React, { useState } from "react";
 
 import { faReact } from "@fortawesome/free-brands-svg-icons";
 import {
+  faArrowRightToBracket,
   faBarsStaggered,
   faMagnifyingGlass,
+  faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   return (
-    <div className="mb-5">
+    <>
       <div className="bg-[#3b3c4c] text-[#9ca9b9] flex w-full h-[61px] justify-between relative z-20 shadow-md">
-        <div
+        <button
           className="bg-[#45475a] text-[#eeeeee] h-full p-[18px] cursor-pointer md:hidden"
           onClick={() => {
-            setIsSearchOpen(false)
+            setIsSearchOpen(false);
             setIsMenuOpen(!isMenuOpen);
-        }}
+          }}
         >
           <FontAwesomeIcon icon={faBarsStaggered} className="text-[25px]" />
-        </div>
+        </button>
         <div className="w-full px-3 text-left flex items-center">
           <a
             href="#"
@@ -33,28 +36,37 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faReact} className="text-[#3453d1] mr-2" />
             ZManga
           </a>
-          <div className="hidden md:flex gap-2 ml-5">
-            <a className="bg-[#45475a] text-[#9ca9b9] rounded-md px-[15px] py-[8px] text-[16px] font-semibold tracking-wide cursor-pointer hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">
-              Manga List
-            </a>
-            <a className="bg-[#45475a] text-[#9ca9b9] rounded-md px-[15px] py-[8px] text-[16px] font-semibold tracking-wide cursor-pointer hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">
-              Genre List
-            </a>
-            <a className="bg-[#45475a] text-[#9ca9b9] rounded-md px-[15px] py-[8px] text-[16px] font-semibold tracking-wide cursor-pointer hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">
-              Bookmark
-            </a>
-          </div>
+          <ul className="hidden md:flex gap-2 ml-5">
+            <li>
+              <a className="bg-[#45475a] text-[#9ca9b9] rounded-md px-[15px] py-[8px] text-[16px] font-semibold tracking-wide cursor-pointer hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">
+                Manga List
+              </a>
+            </li>
+            <li>
+              <a className="bg-[#45475a] text-[#9ca9b9] rounded-md px-[15px] py-[8px] text-[16px] font-semibold tracking-wide cursor-pointer hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">
+                Genre List
+              </a>
+            </li>
+            <li>
+              <a className="bg-[#45475a] text-[#9ca9b9] rounded-md px-[15px] py-[8px] text-[16px] font-semibold tracking-wide cursor-pointer hover:bg-[#3453d1] hover:text-[#ffffff] transition-colors">
+                Bookmark
+              </a>
+            </li>
+          </ul>
         </div>
         <div className="flex">
-          <div className="bg-[#45475a] text-[#eeeeee] h-full p-[18px] cursor-pointer md:hidden" onClick={() => {
-                setIsMenuOpen(false);
-                setIsSearchOpen(!isSearchOpen);
-            }}>
+          <button
+            className="bg-[#45475a] text-[#eeeeee] h-full p-[18px] cursor-pointer md:hidden"
+            onClick={() => {
+              setIsMenuOpen(false);
+              setIsSearchOpen(!isSearchOpen);
+            }}
+          >
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
               className="text-[25px] font-bold"
             />
-          </div>
+          </button>
           <div className="hidden md:flex h-full items-center">
             <div className="py-3 px-4 bg-[#2f303e] rounded-sm flex">
               <input
@@ -72,7 +84,10 @@ const Navbar = () => {
             </div>
           </div>
           <div className="h-full px-[12px] cursor-pointer flex items-center">
-            <div className="rounded-full h-[35px] w-[35px] bg-gray-300" />
+            <button
+              className="rounded-full h-[35px] w-[35px] bg-gray-300"
+              onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+            />
           </div>
         </div>
       </div>
@@ -123,7 +138,34 @@ const Navbar = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} className="text-sm pl-2" />
         </div>
       </div>
-    </div>
+
+      {/* user menu */}
+      <ul
+        className={
+          "absolute z-40 top-16 right-1 bg-[#3b3c4c] rounded-md" +
+          (isUserMenuOpen ? "" : " hidden")
+        }
+      >
+        <li className="m-[7px]">
+          <a
+            href="#"
+            className="text-left w-28 hover:bg-[#45475a] flex items-center px-[10px] py-[7px] rounded-md text-[13px] text-[#9ca9b9] font-semibold tracking-wide"
+          >
+            <FontAwesomeIcon icon={faArrowRightToBracket} className="mr-3" />
+            Login
+          </a>
+        </li>
+        <li className="m-[7px]">
+          <a
+            href="#"
+            className="text-left w-28 hover:bg-[#45475a] flex items-center px-[10px] py-[7px] rounded-md text-[13px] text-[#9ca9b9] font-semibold tracking-wide"
+          >
+            <FontAwesomeIcon icon={faUserPlus} className="mr-2" />
+            Register
+          </a>
+        </li>
+      </ul>
+    </>
   );
 };
 
