@@ -6,7 +6,8 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
-import Navbar from '@/components/navbar';
+import Header from '@/components/header';
+import Footer from '@/components/footer'
 
 const font = Titillium_Web({ weight: "400", subsets: ["latin"] });
 
@@ -24,8 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <Navbar />
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )

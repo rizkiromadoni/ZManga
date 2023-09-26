@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "./ui/container";
 
-const Navbar = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -30,13 +30,18 @@ const Navbar = () => {
           >
             <FontAwesomeIcon icon={faBarsStaggered} className="text-[25px]" />
           </button>
-          <div className="w-full px-3 text-left flex items-center">
+          <div className="w-full px-3 text-left flex items-center lg:pl-0">
             <a
               href="#"
               className="text-[27px] text-[#eeeeee] font-extrabold hover:text-[#3453d1] transition-colors duration-500"
             >
-              <FontAwesomeIcon icon={faReact} className="text-[#3453d1] mr-2" />
-              ZManga
+              <h1>
+                <FontAwesomeIcon
+                  icon={faReact}
+                  className="text-[#3453d1] mr-2"
+                />
+                ZManga
+              </h1>
             </a>
             <ul className="hidden md:flex gap-2 ml-5">
               <li>
@@ -85,12 +90,12 @@ const Navbar = () => {
                 />
               </div>
             </div>
-            <div className="h-full px-[12px] cursor-pointer flex items-center relative">
+            <div className="h-full px-[12px] cursor-pointer flex items-center relative lg:pr-0">
               <button
                 className="rounded-full h-[40px] w-[40px] bg-gray-300"
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
               />
-              
+
               {/* user menu */}
               <ul
                 className={
@@ -175,4 +180,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;
