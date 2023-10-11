@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "./ui/container";
+import avatar from "@/public/no-avatar.jpg"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -92,7 +93,7 @@ const Header = () => {
             </div>
             <div className="h-full px-[12px] cursor-pointer flex items-center relative lg:pr-0">
               <button
-                className="rounded-full h-[40px] w-[40px] bg-gray-300"
+                className="rounded-full h-[40px] w-[40px] bg-[url('/no-avatar.jpg')] bg-cover bg-no-repeat"
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
               />
 
